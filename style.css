@@ -26,6 +26,10 @@ body{
     text-transform: uppercase;
 }
 
+#filter{
+    margin-left: 10px
+}
+
 /* Site main */
 
 #cards{

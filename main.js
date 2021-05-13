@@ -97,9 +97,12 @@ let icone = [
     }
 ];
 let cardsEl = document.getElementById('cards');
-
-
-
+var selectedType = document.getElementById('filter')
+var selectedValue;
+// Gets value from select menu and updates it when changed
+selectedType.addEventListener('change', event => {
+    selectedValue = event.target.value
+})
 
 const displayCards = function () {
     icone.forEach(icona => {
@@ -122,6 +125,8 @@ const displayCards = function () {
 }
 
 displayCards()
+
+
 
 
 
