@@ -96,23 +96,33 @@ let icone = [
         family: 'fas'
     }
 ];
-let cardsEl = document.getElementById('cards')
+let cardsEl = document.getElementById('cards');
 
-icone.forEach(icona => {
-    icona.prefix = 'fa-' + icona.name;
-    if (icona.type === 'animal') {
-        icona.color = "blue";
-    } else if (icona.type === 'vegetable') {
-        icona.color = 'orange'
-    } else if (icona.type === 'user') {
-        icona.color = 'purple'
-    }
-    cardsEl.insertAdjacentHTML('beforeend', `
-    <div class="card">
+
+
+
+const displayCards = function () {
+    icone.forEach(icona => {
+        icona.prefix = 'fa-' + icona.name;
+        // Changes color by type
+        if (icona.type === 'animal') {
+            icona.color = "blue";
+        } else if (icona.type === 'vegetable') {
+            icona.color = 'orange';
+        } else if (icona.type === 'user') {
+            icona.color = 'purple';
+        }
+        cardsEl.insertAdjacentHTML('beforeend', `
+        <div class="card" style="display: ${icona.display}">
         <i class="${icona.family} ${icona.prefix}" style="color: ${icona.color}"></i>
         <h4>${icona.name}</h4>
-    </div>
-    `)
-})
+        </div>
+        `)
+    })
+}
 
-console.log(icone);
+displayCards()
+
+
+
+
