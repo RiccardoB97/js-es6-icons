@@ -1,4 +1,4 @@
-let icone = [
+var icone = [
     {
         name: 'cat',
         prefix: 'fa-',
@@ -98,25 +98,50 @@ let icone = [
 ];
 let cardsEl = document.getElementById('cards');
 var selectedType = document.getElementById('filter')
-var selectedValue;
 // Gets value from select menu and updates it when changed
+var selectedValue;
+function getSelectedValue() {
+    selectedValue = selectedType.value;
+    return selectedValue
+}
+getSelectedValue()
+
 selectedType.addEventListener('change', event => {
     selectedValue = event.target.value
+    displayCards()
+
 })
 
+
 const displayCards = function () {
+    cardsEl.innerHTML = ""
     icone.forEach(icona => {
         icona.prefix = 'fa-' + icona.name;
         // Changes color by type
-        if (icona.type === 'animal') {
+        if (icona.type === 'animal' && selectedValue === 'animal') {
             icona.color = "blue";
-        } else if (icona.type === 'vegetable') {
+            icona.display = 'flex';
+        } else if (icona.type === 'vegetable' && selectedValue === 'vegetables') {
             icona.color = 'orange';
-        } else if (icona.type === 'user') {
+            icona.display = 'flex';
+        } else if (icona.type === 'user' && selectedValue === 'user') {
             icona.color = 'purple';
+            icona.display = 'flex';
+
+        } else if (selectedValue === 'all') {
+            icona.display = 'flex'
+            if (icona.type === 'animal') {
+                icona.color = 'blue'
+            } else if (icona.type === 'vegetable') {
+                icona.color = 'orange'
+            } else {
+                icona.color = 'purple'
+            }
+        } else {
+            icona.display = "none"
         }
         cardsEl.insertAdjacentHTML('beforeend', `
-        <div class="card" style="display: ${icona.display}">
+        <div class="card ${icona.type}" style="display: ${icona.display}" >
         <i class="${icona.family} ${icona.prefix}" style="color: ${icona.color}"></i>
         <h4>${icona.name}</h4>
         </div>
@@ -124,7 +149,14 @@ const displayCards = function () {
     })
 }
 
-displayCards()
+
+
+
+
+
+
+
+
 
 
 
